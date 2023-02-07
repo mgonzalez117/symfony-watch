@@ -1,0 +1,26 @@
+version: '3.7'
+services:
+  symfony:
+    container_name: symfony
+    build:
+      context: .docker/symfony
+    volumes:
+      - ./:/var/www/symfony
+    env_file:
+      - .docker/.env
+    networks:
+      - symfony
+  nginx:
+    container_name: nginx
+    build:
+      context: .docker/nginx
+    volumes:
+      - ./:/var/www/symfony
+    env_file:
+      - .docker/.env.nginx
+    ports:
+      - 8000:80
+    networks:
+      - symfony
+networks:
+  symfony:
