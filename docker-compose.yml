@@ -4,10 +4,12 @@ services:
     container_name: symfony
     build:
       context: .docker/symfony
+      args:
+        TIMEZONE: 'Europe/Paris'
+        GIT_USER_EMAIL: 'cyberalternative@gmail.com'
+        GIT_USER_NAME: 'Michael Gonzalez'
     volumes:
       - ./:/var/www/symfony
-    env_file:
-      - .docker/.env
     networks:
       - symfony
   nginx:

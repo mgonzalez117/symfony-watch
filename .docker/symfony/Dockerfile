@@ -1,5 +1,7 @@
 FROM php:8.2-fpm-bullseye
 ARG TIMEZONE
+ARG GIT_USER_EMAIL
+ARG GIT_USER_NAME
 
 COPY php.ini /usr/local/etc/php/conf.d/docker-php-config.ini
 COPY php.ini /usr/local/etc/php/conf.d/docker-php-config.ini
@@ -20,6 +22,7 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxslt1-dev \
     acl \
+    nano \
     && echo 'alias sf="php bin/console"' >> ~/.bashrc
 
 RUN docker-php-ext-configure gd --with-jpeg --with-freetype
@@ -33,5 +36,13 @@ RUN ln -snf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && echo ${TIMEZONE} >
     && "date"
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# because PhpCsFixer does not supports PHP 8.2 at the moment
+ENV PHP_CS_FIXER_IGNORE_ENV=1
+
+# Git configuration
+RUN git config --global --add safe.directory /var/www/symfony
+RUN git config --global user.email "${GIT_USER_EMAIL}"
+RUN git config --global user.name "${GIT_USER_NAME}"
 
 WORKDIR /var/www/symfony

@@ -15,7 +15,7 @@ This project is intended to be forked for each new watch need.
 
 - Symfony **6.2** skeleton (--webapp)
 - Composer
-- GrumpPHP
+- GrumpPHP : PHPStan, PHPCsFixer, Tests checker
 - PHPUnit
 
 ## How to use

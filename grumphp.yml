@@ -1,0 +1,7 @@
+grumphp:
+    tasks:
+        phpcsfixer:
+            config: '.php-cs-fixer.php'
+        phpstan:
+            level: 9
+        phpunit: ~

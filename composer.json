@@ -19,7 +19,7 @@
         "symfony/doctrine-messenger": "6.2.*",
         "symfony/dotenv": "6.2.*",
         "symfony/expression-language": "6.2.*",
-        "symfony/flex": "^2",
+        "symfony/flex": "^2.2",
         "symfony/form": "6.2.*",
         "symfony/framework-bundle": "6.2.*",
         "symfony/http-client": "6.2.*",
@@ -46,7 +46,8 @@
     "config": {
         "allow-plugins": {
             "symfony/flex": true,
-            "symfony/runtime": true
+            "symfony/runtime": true,
+            "phpro/grumphp": true
         },
         "sort-packages": true
     },
@@ -91,6 +92,9 @@
         }
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.14",
+        "phpro/grumphp": "^1.15",
+        "phpstan/phpstan": "^1.9",
         "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "6.2.*",
         "symfony/css-selector": "6.2.*",
