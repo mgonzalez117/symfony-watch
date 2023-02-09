@@ -1,0 +1,43 @@
+version: '3.7'
+services:
+
+  symfony:
+    container_name: symfony
+    build:
+      context: .docker/symfony
+      args:
+        TIMEZONE: 'Europe/Paris'
+        GIT_USER_EMAIL: 'cyberalternative@gmail.com'
+        GIT_USER_NAME: 'Michael Gonzalez'
+    volumes:
+      - ./:/var/www/symfony
+    networks:
+      - symfony
+
+  nginx:
+    container_name: nginx
+    build:
+      context: .docker/nginx
+    volumes:
+      - ./:/var/www/symfony
+    env_file:
+      - .docker/.env.nginx
+    ports:
+      - 8000:80
+    networks:
+      - symfony
+
+ ###> doctrine/doctrine-bundle ###
+  database:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: app
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: app
+    volumes:
+      - ./docker/db/data:/var/lib/postgresql/data:rw
+    ports:
+      - 5432:5432
+  ###< doctrine/doctrine-bundle ###
+networks:
+  symfony:
