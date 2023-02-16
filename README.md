@@ -19,6 +19,7 @@ This project is intended to be forked for each new watch need.
 
 ## How to use
 
+* Copy file `.php-cs-fixer.dist.php` to `.php-cs-fixer.php`
 * Change `GIT_USER_EMAIL` and `GIT_USER_NAME` values in `docker-compose.yml`
 * Configure `./docker/.env`, it is the env file for the `symfony` container
 * Configure `./docker/.env.nginx`, it is the env file for the `nginx` container

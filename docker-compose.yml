@@ -38,6 +38,8 @@ services:
       - ./.docker/db/data:/var/lib/postgresql/data:rw
     ports:
       - 5432:5432
+    networks:
+      - symfony
   ###< doctrine/doctrine-bundle ###
 networks:
   symfony:
